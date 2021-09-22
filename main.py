@@ -19,7 +19,6 @@ def game_build(): #method create
     pygame.mixer.music.set_volume(0.5) # range will be 0 to 1.. depends on volume
     pygame.mixer.music.play(3) # 3 times continious play... if i put nothing... then it will play 1 time...
 
-
     bkg_img = pygame.image.load("gallery\\images\\bg.png") #background load
     base_img = pygame.image.load("gallery\\images\\base.png") #base image
     var_x= 0
