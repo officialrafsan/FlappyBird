@@ -21,7 +21,6 @@ def game_build(): #method create
 
 
     bkg_img = pygame.image.load("gallery\\images\\bg.png") #background load
-
     base_img = pygame.image.load("gallery\\images\\base.png") #base image
     var_x= 0
 
