@@ -53,7 +53,6 @@ def game_build(): #method create
         # bird movment
         bird_momvent(window, bird_img, bird_rect) #call the function
 
-
         clock.tick(60) #frame rate... if i take low then it will lag, if i take high value, then it will run faster
 
         # updating screen
