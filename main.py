@@ -8,16 +8,16 @@ def pause():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                quit()
+                quit() #if i press cross button during pause, it will quit
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:
-                    paused = False #if i press c, it will reume
+                    paused = False #if i press c during pause, it will resume
                     pygame.mixer.music.unpause() #music unpause
 
                 if event.key == pygame.K_q:
                     pygame.quit()
-                    quit() #if i press q, then it will quit
+                    quit() #if i press q during pause, then it will quit
 
 def base_movement(window, base_img, var_x): #animated base
     window.blit(base_img, (var_x, 640 - 112))  # display base image...   var_x is move from right to left position...
@@ -34,15 +34,15 @@ def pipe_movement(window, pipes, pipe_img):
         pipe.centerx -= 5
 
     for pipe in pipes:
-        window.blit(pipe_img, pipe)
+        window.blit(pipe_img, pipe) #show pipes
 
 def collision(pipes, bird_rect): #collision function
     for pipe in pipes:
         if pipe.colliderect(bird_rect):
             print("Collided")
 
-    #upper & lower bound
-    if bird_rect.top <= -10:
+    #upper & lower bound hit
+    if bird_rect.top <= -5:
         print("Exceeded Upper Limit")
 
     if bird_rect.bottom >= 640-112:
