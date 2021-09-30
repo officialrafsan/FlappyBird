@@ -22,8 +22,8 @@ def pause():
 def base_movement(window, base_img, var_x): #animated base
     window.blit(base_img, (var_x, 640 - 112))  # display base image...   var_x is move from right to left position...
     # 640 =total screen height - base image height 112
-    window.blit(base_img, (var_x+336, 640 - 112)) #here 336 = base image's width
-    # second window which will join base as merge... that's why x+336... 337 no pt will show 0 of image.. see down
+    window.blit(base_img, (var_x+1008, 640 - 112)) #here 1008 = base image's width
+    # second window which will join base as merge... that's why x+1008... 1009 no pt will show 0 of image.. see down
 
 def bird_movement(window, bird_img, bird_rect):
     window.blit(bird_img,bird_rect) #display bird image
@@ -53,7 +53,7 @@ def collision(pipes, bird_rect): #collision function
 def game_build(): #function create for game build
 
     pygame.init() #initialize pygame
-    window = pygame.display.set_mode((336,640)) #display size
+    window = pygame.display.set_mode((1080,640)) #display size
 
     #background music
     pygame.mixer.init() #initialize music
@@ -61,16 +61,16 @@ def game_build(): #function create for game build
     pygame.mixer.music.set_volume(0.25) # range will be 0 to 1.. depends on volume
     pygame.mixer.music.play(3) # 3 times continious play... if i put nothing... then it will play 1 time...
 
-    bkg_img = pygame.image.load("gallery\\images\\bg.png") #background load
-    base_img = pygame.image.load("gallery\\images\\base.png") #base image
+    bkg_img = pygame.image.load("gallery\\images\\bg_image.png") #background load
+    base_img = pygame.image.load("gallery\\images\\base_image.png") #base image
     var_x= 0
 
     # bird
     bird_img = pygame.image.load("gallery\\images\\bird.png") #bird image load
-    bird_rect = bird_img.get_rect(center=(50,640/2)) #get rectangle function, 336/2. 640/2 will place the bird in center
+    bird_rect = bird_img.get_rect(center=(75,640/2)) #get rectangle function, 336/2. 640/2 will place the bird in center
     #center means... image will displayed from center
     g_force = 1
-    bird_new_pos = 0
+    bird_new_pos = 640/2 #total screen height/2 ... bird will start from middle of screen
 
     #pipes
     pipe_img = pygame.image.load("gallery\\images\\pipe.png")
@@ -100,8 +100,8 @@ def game_build(): #function create for game build
                     pause() #call of pause function
 
             if event.type == TIMER:
-                random_pipe_height = [300, 350, 400, 450, 500, 550, 600] #pipe height
-                pipes = pipe_img.get_rect(midtop = (290,random.choice(random_pipe_height)))
+                random_pipe_height = [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050] #pipe height
+                pipes = pipe_img.get_rect(midtop = (1080,random.choice(random_pipe_height)))
                 list_of_pipe.append(pipes) #show the list of pipes
 
 
