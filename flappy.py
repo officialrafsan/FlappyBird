@@ -37,7 +37,6 @@ def check_collision(pipes):
 	global can_score
 
 	for pipe in pipes:
-
 		if bird_rect.colliderect(pipe):
 			death_sound.play()
 			can_score = True
@@ -46,7 +45,6 @@ def check_collision(pipes):
 	if bird_rect.top <= -100 or bird_rect.bottom >= 900:
 		can_score = True
 		return False
-
 	return True
 
 #rotate_bird
@@ -76,7 +74,6 @@ def score_display(game_state):
 		screen.blit(high_score_surface,high_score_rect)
 
 def update_score(score, high_score):
-
 	if score > high_score:
 		high_score = score
 	return high_score
@@ -124,10 +121,6 @@ bird_rect = bird_surface.get_rect(center = (100,512))
 BIRDFLAP = pygame.USEREVENT + 1
 pygame.time.set_timer(BIRDFLAP,1000)
 
-# bird_surface = pygame.image.load('assets/bluebird-midflap.png').convert_alpha()
-# bird_surface = pygame.transform.scale2x(bird_surface)
-# bird_rect = bird_surface.get_rect(center = (100,512))
-
 pipe_surface = pygame.image.load('assets/pipe-red.png')
 pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_list = []
@@ -145,11 +138,31 @@ score_sound_countdown = 100
 SCOREEVENT = pygame.USEREVENT + 2
 pygame.time.set_timer(SCOREEVENT,100)
 
-while True: #while running the game
+def pause():
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit() #if i press cross button during pause, it will quit
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    paused = False #if i press c during pause, it will resume
+
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit() #if i press q during pause, then it will quit
+
+while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
+
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_p:
+				pause()  # call of pause function
 
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_SPACE and game_active:
